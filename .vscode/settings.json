@@ -1,14 +1,11 @@
 {
-    "files.associations": {
-        "stdint.h": "c",
-        "types.h": "c"
-    },
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/node_modules": true
+        "**/node_modules": true,
+        "dist/":true
     }
 }
