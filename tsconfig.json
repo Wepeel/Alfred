@@ -1,23 +1,40 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
         "module": "commonjs",
+        "experimentalDecorators": true,
         "esModuleInterop": true,
         "target": "es6",
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",
-        "baseUrl": "src",
+        "baseUrl": ".",
         "paths": {
             "@controllers_dir/*": [
                 "controllers/*"
             ],
             "@routes_dir/*": [
                 "routes/*"
+            ],
+            "@config/*": [
+                "config/*"
+            ],
+            "@models_dir/*": [
+                "models/*"
+            ],
+            "@common/*": [
+                "common/*"
             ]
         }
     },
     "include": [
-        "src/**/*"
+        "common/**/*",
+        "config/**/*",
+        "controllers/**/*",
+        "models/**/*",
+        "routes/**/*",
+        "views/**/*",
+        "app.ts"
     ]
 }

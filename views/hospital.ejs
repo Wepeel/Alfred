@@ -1,0 +1,22 @@
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+
+    <body>
+        <%- include("./partials/nav.ejs") %>
+
+        <p>
+            <h1>Name: <%= hospital.name %></h1>
+        </p>
+        <p>
+            <h1>Longitude: <%= hospital.longitude %></h1>
+        </p>
+        <p>
+            <h1>Latitude: <%= hospital.latitude %></h1>
+        </p>
+        <p>
+            <h1>Load Percentage: <%= hospital.load_percentage %></h1>
+        </p>
+
+        <%- include("./partials/footer.ejs") %>
+    </body>
+</html>
