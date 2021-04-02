@@ -5,8 +5,8 @@ import logger from '@common/logger'
 export const patientIndexGet = async (req: express.Request, res: express.Response) => {
     try {
         const result = await Patient.find().sort({ createdAt: -1 })
-        res.render('index', { patients: result, title: 'All patients' });
-        logger.info(result);
+        res.render('patient_index', { patients: result, title: 'All patients' });
+        logger.debug(result);
     }
     catch (err) {
         logger.error(err);

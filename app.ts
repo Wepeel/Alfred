@@ -26,4 +26,4 @@ app.set('view engine', 'ejs');
 
 app.use('/case', caseRoutes);
 app.use('/patients', patientsRoutes);
-app.use('/', hospitalRoutes);
+app.use('/hospitals', hospitalRoutes);
