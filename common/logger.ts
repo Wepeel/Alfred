@@ -2,7 +2,7 @@ import winston from 'winston';
 
 const logger = winston.createLogger({
     level: 'info',
-    format: winston.format.combine(winston.format.json(),winston.format.colorize()),
+    format: winston.format.combine(winston.format.json(), winston.format.colorize()),
     defaultMeta: { service: 'user-service' },
 });
 
@@ -20,8 +20,8 @@ if (process.env.NODE_ENV !== 'production') {
 winston.addColors({
     error: 'red',
     warn: 'yellow',
-    info: 'cyan',
-    debug: 'green'
+    info: 'green',
+    debug: 'white'
 })
 
 export = logger;
