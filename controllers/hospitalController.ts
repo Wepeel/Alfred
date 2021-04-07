@@ -1,4 +1,4 @@
-import Hospital from '@models_dir/hospital';
+import { Hospital } from '@models_dir/hospital';
 import express from 'express'
 
 import logger from "@common/logger"
@@ -6,7 +6,7 @@ import logger from "@common/logger"
 export const hospitalIndexGet = async (req: express.Request, res: express.Response) => {
     try {
         const result = await Hospital.find().sort({ createdAt: -1 })
-        res.render('hospital_index', { hospitals: result, title: 'All hospitals'});
+        res.render('hospital_index', { hospitals: result, title: 'All hospitals' });
         logger.debug(result);
     }
     catch (err) {

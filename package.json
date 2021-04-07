@@ -14,10 +14,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/redis": "^2.8.28",
+    "bluebird": "^3.7.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "grpc": "^1.24.6",
     "mongoose": "^5.12.2",
+    "redis": "^3.1.0",
     "reflect-metadata": "^0.1.13",
     "typegoose": "^5.9.1",
     "winston": "^3.3.3"
@@ -34,6 +37,7 @@
     "@routes_dir": "./dist/routes",
     "@config": "./dist/config",
     "@models_dir": "./dist/models",
-    "@common": "./dist/common"
+    "@common": "./dist/common",
+    "@global": "./dist/global"
   }
 }
