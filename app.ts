@@ -9,13 +9,16 @@ import caseRoutes from '@routes_dir/caseRoutes';
 import logger from '@common/logger';
 import config from "@config/config";
 import mongoose from 'mongoose';
+import { initializeCaches } from "@global/caches";
 
 const app = express();
 
 mongoose.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        app.listen(3000);
-        logger.info('Listening to port 3000')
+        initializeCaches().then(() => {
+            logger.info('Listening to port 3000');
+            app.listen(3000);
+        });
     });
 
 
