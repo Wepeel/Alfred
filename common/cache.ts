@@ -1,3 +1,3 @@
-import MapCache from "./cache/mapCache";
+import NCache from "./cache/nodeCache";
 
-export = class Cache<Key, Value> extends MapCache<Key, Value>{ };
+export = class Cache<Value> extends NCache<Value>{ };

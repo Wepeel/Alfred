@@ -1,8 +1,14 @@
-export interface ICache<Key, Value> {
-    has: (key: Key) => Promise<boolean>;
-    get: (key: Key) => Promise<Value>;
-    set: (key: Key, value: Value) => Promise<void>;
-    setArray: (keys: Key[], values: Value[]) => Promise<void>;
+export type ValueSetItem<T> = {
+    key: string;
+    val: T;
+    ttl?: number;
+}
+
+export interface ICache<Value> {
+    has: (key: string) => Promise<boolean>;
+    get: (key: string) => Promise<Value>;
+    set: (key: string, value: Value) => Promise<void>;
+    mset: (keyValuePairs: ValueSetItem<Value>[]) => Promise<void>;
     values: () => Promise<IterableIterator<Value>>;
-    keys: () => Promise<IterableIterator<Key>>;
+    keys: () => Promise<IterableIterator<string>>;
 }

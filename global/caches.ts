@@ -4,13 +4,14 @@ import { IHospital, Hospital } from "@models_dir/hospital"
 import { hospitalIndexGet } from "@controllers_dir/hospitalController";
 
 
-export let hospitalCache = new Cache<string, IHospital>(50);
+export let hospitalCache = new Cache<IHospital>();
 
 async function initializeHospitalCache() {
     const result = await Hospital.find().sort({ createdAt: -1 });
-    await hospitalCache.setArray(
-        result.map((hospital: IHospital) => hospital.id),
-        result
+    await hospitalCache.mset(
+        result.map((hospital: IHospital) => {
+            return { key: hospital.id, val: hospital }
+        })
     );
 }
 
