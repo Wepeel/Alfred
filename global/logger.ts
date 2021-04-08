@@ -1,5 +1,5 @@
 import winston from 'winston';
-import expressWinston from 'express-winston'
+import expressWinston from 'express-winston';
 
 export const logger = winston.createLogger({
     level: 'info',
