@@ -6,7 +6,7 @@ import express from 'express';
 import patientsRoutes from '@routes_dir/patientsRoutes';
 import hospitalRoutes from '@routes_dir/hospitalRoutes';
 import caseRoutes from '@routes_dir/caseRoutes';
-import { logger, expressWinstonLogger } from '@common/logger';
+import { logger, expressWinstonLogger } from '@global/logger';
 import config from "@config/config";
 import mongoose from 'mongoose';
 import { initializeCaches } from "@global/caches";

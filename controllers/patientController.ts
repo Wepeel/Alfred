@@ -1,6 +1,6 @@
 import Patient from '@models_dir/patient';
 import express from 'express'
-import { logger } from '@common/logger'
+import { logger } from '@global/logger'
 
 export const patientIndexGet = async (req: express.Request, res: express.Response) => {
     try {
