@@ -6,7 +6,7 @@ import express from 'express';
 import patientsRoutes from '@routes_dir/patientsRoutes';
 import hospitalRoutes from '@routes_dir/hospitalRoutes';
 import caseRoutes from '@routes_dir/caseRoutes';
-import logger from '@common/logger';
+import { logger, expressWinstonLogger } from '@common/logger';
 import config from "@config/config";
 import mongoose from 'mongoose';
 import { initializeCaches } from "@global/caches";
@@ -24,6 +24,7 @@ mongoose.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: t
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(expressWinstonLogger)
 
 app.set('view engine', 'ejs');
 

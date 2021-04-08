@@ -2,7 +2,7 @@ import { Hospital } from '@models_dir/hospital';
 import { hospitalCache } from "@global/caches"
 import express from 'express'
 
-import logger from "@common/logger"
+import { logger } from "@common/logger"
 
 export const hospitalIndexGet = async (req: express.Request, res: express.Response) => {
     try {

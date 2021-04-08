@@ -1,5 +1,5 @@
 import { ICache } from './icache'
-import logger from "@common/logger"
+import { logger } from "@common/logger"
 
 export = class MapCache<Key, Value> implements ICache<Key, Value> {
 
