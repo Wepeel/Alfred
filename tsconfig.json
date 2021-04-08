@@ -25,6 +25,9 @@
             ],
             "@common/*": [
                 "common/*"
+            ],
+            "@global/*": [
+                "global/*"
             ]
         }
     },
@@ -32,6 +35,7 @@
         "common/**/*",
         "config/**/*",
         "controllers/**/*",
+        "global/**/*",
         "models/**/*",
         "routes/**/*",
         "views/**/*",

@@ -1,26 +1,25 @@
-import mongoose from 'mongoose';
-const Schema = mongoose.Schema;
+import { Schema, model } from 'mongoose';
 
 const patientSchema = new Schema(
-{
-    first_name:
     {
-        type: String,
-        required: true
-    },
+        first_name:
+        {
+            type: String,
+            required: true
+        },
 
-    last_name:
-    {
-        type: String,
-        required: true
-    },
+        last_name:
+        {
+            type: String,
+            required: true
+        },
 
-    hospital:
-    {
-        type: Schema.Types.ObjectId
-    }
+        hospital:
+        {
+            type: Schema.Types.ObjectId
+        }
 
-}, { timestamps: true });
+    }, { timestamps: true });
 
-const Patient = mongoose.model('Patient', patientSchema);
+const Patient = model('Patient', patientSchema);
 export = Patient;
