@@ -19,7 +19,14 @@ export const hospitalInfoGet = async (req: express.Request, res: express.Respons
     const id = req.params.id;
 
     try {
-        const result = await hospitalCache.get(id);
+        let result;
+        if (await hospitalCache.has(id)) {
+            result = await hospitalCache.get(id);
+        }
+        else {
+            result = await Hospital.findById(id);
+            await hospitalCache.set(id, result);
+        }
         res.render('hospital', { hospital: result, title: 'Hospital Info' });
     }
     catch (err) {
