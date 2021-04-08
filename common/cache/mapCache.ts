@@ -1,25 +1,25 @@
-import { ICache } from './icache'
+import { ICache, ValueSetItem } from './icache'
 import { logger } from "@common/logger"
 
-export = class MapCache<Key, Value> implements ICache<Key, Value> {
+export = class MapCache<Value> implements ICache<Value> {
 
-    _cache: Map<Key, Value>;
+    _cache: Map<string, Value>;
     readonly _size: number;
 
     public constructor(sizeOfCache: number) {
-        this._cache = new Map<Key, Value>();
+        this._cache = new Map<string, Value>();
         this._size = sizeOfCache;
     }
 
-    public async has(key: Key): Promise<boolean> {
+    public async has(key: string): Promise<boolean> {
         return this._cache.has(key);
     }
 
-    public async get(key: Key): Promise<Value> {
+    public async get(key: string): Promise<Value> {
         return this._cache.get(key);
     }
 
-    public async set(key: Key, value: Value): Promise<void> {
+    public async set(key: string, value: Value): Promise<void> {
         if (this._cache.size < this._size) {
             this._cache.set(key, value);
             return;
@@ -29,7 +29,7 @@ export = class MapCache<Key, Value> implements ICache<Key, Value> {
             return;
         }
 
-        let b: Key;
+        let b: string;
 
         for (const i of this._cache.keys()) {
             b = i;
@@ -40,15 +40,10 @@ export = class MapCache<Key, Value> implements ICache<Key, Value> {
         this._cache.set(key, value);
     }
 
-    public async setArray(keys: Key[], values: Value[]): Promise<void> {
-        if (keys.length !== values.length) {
-            logger.error("Error setting cache - sizes of key and value don't match");
-            return;
-        }
-
-        await Promise.all(keys.map(
-            async (key, index) => {
-                await this.set(key, values[index]);
+    public async mset(keyValuePairs: ValueSetItem<Value>[]): Promise<void> {
+        await Promise.all(keyValuePairs.map(
+            async (keyValuePair) => {
+                await this.set(keyValuePair.key, keyValuePair.val);
             }
         ));
     }
@@ -57,7 +52,7 @@ export = class MapCache<Key, Value> implements ICache<Key, Value> {
         return this._cache.values();
     }
 
-    public async keys(): Promise<IterableIterator<Key>> {
+    public async keys(): Promise<IterableIterator<string>> {
         return this._cache.keys();
     }
 }
