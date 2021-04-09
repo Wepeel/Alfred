@@ -1,16 +1,16 @@
 import { Patient } from '@models_dir/patient';
-import express from 'express'
-import { logger } from '@global/logger'
+import express from 'express';
+import { logger } from '@global/logger';
 
 export const patientIndexGet = async (req: express.Request, res: express.Response) => {
     try {
-        const result = await Patient.find().sort({ createdAt: -1 })
+        const result = await Patient.find().sort({ createdAt: -1 });
         res.render('patient_index', { patients: result, title: 'All patients' });
         logger.debug(result);
     }
     catch (err) {
         logger.error(err);
-    };
+    }
 };
 
 export const patientInfoGet = async (req: express.Request, res: express.Response) => {
@@ -22,7 +22,7 @@ export const patientInfoGet = async (req: express.Request, res: express.Response
     catch (err) {
         logger.error(err);
         res.render('404', { title: "Couldn't find patient" });
-    };
+    }
 };
 
 export const patientIndexPost = async (req: express.Request, res: express.Response) => {
@@ -60,4 +60,4 @@ export const patientIndexPut = async (req: express.Request, res: express.Respons
     catch (err) {
         logger.error(err);
     }
-}
+};

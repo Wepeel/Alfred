@@ -7,7 +7,7 @@
 			"group": "build",
 			"problemMatcher": [],
 			"label": "build",
-			"detail": "tsc",
+			"detail": "tsc && build-types",
 		}
 	]
 }

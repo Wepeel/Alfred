@@ -11,6 +11,7 @@ import config from "@config/config";
 import mongoose from 'mongoose';
 import { initializeCaches } from "@global/caches";
 
+
 const app = express();
 
 mongoose.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -21,10 +22,9 @@ mongoose.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: t
         });
     });
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(expressWinstonLogger)
+app.use(expressWinstonLogger);
 
 app.set('view engine', 'ejs');
 

@@ -3,6 +3,13 @@
     "extends": [
         "tslint:recommended"
     ],
+    "linterOptions": {
+        "exclude": [
+            "node_modules/**",
+            "generated/**",
+            "config/**"
+        ]
+    },
     "jsRules": {},
     "rules": {
         "trailing-comma": [
@@ -12,7 +19,11 @@
             "options": [
                 120
             ]
-        }
+        },
+        "semicolon": [
+            true,
+            "always"
+        ]
     },
     "rulesDirectory": []
 }
