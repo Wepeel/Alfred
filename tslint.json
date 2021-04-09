@@ -5,7 +5,14 @@
     ],
     "jsRules": {},
     "rules": {
-        "trailing-comma": [ false ]
+        "trailing-comma": [
+            false
+        ],
+        "max-line-length": {
+            "options": [
+                120
+            ]
+        }
     },
     "rulesDirectory": []
 }
