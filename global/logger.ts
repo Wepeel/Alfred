@@ -22,7 +22,7 @@ winston.addColors({
     warn: 'yellow',
     info: 'green',
     debug: 'white'
-})
+});
 
 export const expressWinstonLogger = expressWinston.logger({
     transports: [

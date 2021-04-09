@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build-types && npm run compile",
+    "build-types": "scripts\\build_proto_types.cmd",
+    "compile": "tsc",
     "postinstall": "npm run build",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "prestart": "npm run build",
@@ -14,12 +16,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@grpc/grpc-js": "^1.2.12",
+    "@grpc/proto-loader": "^0.6.0",
     "@types/redis": "^2.8.28",
     "bluebird": "^3.7.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-winston": "^4.1.0",
-    "grpc": "^1.24.6",
     "mongoose": "^5.12.2",
     "node-cache": "^5.1.2",
     "reflect-metadata": "^0.1.13",
@@ -39,6 +42,7 @@
     "@config": "./dist/config",
     "@models_dir": "./dist/models",
     "@common": "./dist/common",
-    "@global": "./dist/global"
+    "@global": "./dist/global",
+    "@generated": "./dist/generated"
   }
 }

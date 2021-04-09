@@ -36,4 +36,4 @@ export = class NCache<Value> implements ICache<Value>{
     async keys(): Promise<IterableIterator<string>> {
         return this._cache.keys().values();
     }
-}
+};

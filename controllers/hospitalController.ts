@@ -1,8 +1,8 @@
 import { Hospital } from '@models_dir/hospital';
-import { hospitalCache } from "@global/caches"
-import express from 'express'
+import { hospitalCache } from "@global/caches";
+import express from 'express';
 
-import { logger } from "@global/logger"
+import { logger } from "@global/logger";
 
 export const hospitalIndexGet = async (req: express.Request, res: express.Response) => {
     try {
@@ -12,7 +12,7 @@ export const hospitalIndexGet = async (req: express.Request, res: express.Respon
     }
     catch (err) {
         logger.error(err);
-    };
+    }
 };
 
 export const hospitalInfoGet = async (req: express.Request, res: express.Response) => {
@@ -32,5 +32,5 @@ export const hospitalInfoGet = async (req: express.Request, res: express.Respons
     catch (err) {
         logger.error(err);
         res.render('404', { title: "Couldn't find patient" });
-    };
+    }
 };

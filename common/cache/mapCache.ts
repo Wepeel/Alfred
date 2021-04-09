@@ -1,4 +1,4 @@
-import { ICache, ValueSetItem } from './icache'
+import { ICache, ValueSetItem } from './icache';
 
 export = class MapCache<Value> implements ICache<Value> {
 
@@ -54,4 +54,4 @@ export = class MapCache<Value> implements ICache<Value> {
     public async keys(): Promise<IterableIterator<string>> {
         return this._cache.keys();
     }
-}
+};

@@ -2,7 +2,7 @@ export type ValueSetItem<T> = {
     key: string;
     val: T;
     ttl?: number;
-}
+};
 
 export interface ICache<Value> {
     has: (key: string) => Promise<boolean>;
