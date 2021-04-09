@@ -1,7 +1,5 @@
 import Cache from "@common/cache"
-import { Schema } from 'mongoose'
 import { IHospital, Hospital } from "@models_dir/hospital"
-import { hospitalIndexGet } from "@controllers_dir/hospitalController";
 
 
 export let hospitalCache = new Cache<IHospital>();
