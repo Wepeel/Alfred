@@ -11,4 +11,5 @@ export interface ICache<Value> {
     mset: (keyValuePairs: ValueSetItem<Value>[]) => Promise<void>;
     values: () => Promise<IterableIterator<Value>>;
     keys: () => Promise<IterableIterator<string>>;
+    delete: (key: string) => Promise<void>;
 }
