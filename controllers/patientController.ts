@@ -1,7 +1,7 @@
 import { Patient } from '@models_dir/patient';
 import express from 'express';
 import { logger } from '@global/logger';
-import { patientCache } from "@global/caches"
+import { patientCache } from "@global/caches";
 
 export const patientIndexGet = async (req: express.Request, res: express.Response) => {
     try {

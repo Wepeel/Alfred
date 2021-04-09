@@ -54,4 +54,8 @@ export = class MapCache<Value> implements ICache<Value> {
     public async keys(): Promise<IterableIterator<string>> {
         return this._cache.keys();
     }
+
+    public async delete(key: string): Promise<void> {
+        this._cache.delete(key);
+    }
 };
