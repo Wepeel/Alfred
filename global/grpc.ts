@@ -1,12 +1,12 @@
-import grpc from '@grpc/grpc-js';
-import protoLoader from '@grpc/proto-loader';
+import { loadPackageDefinition, credentials } from '@grpc/grpc-js';
+import { loadSync } from '@grpc/proto-loader';
 
 import { ProtoGrpcType } from "@generated/doctor";
 
-const PROTO_PATH = "common/proto/doctor.proto";
+const DOCTOR_PROTO_PATH = `${__dirname}/../../common/protos/doctor.proto`;
 
-const packageDefinition = protoLoader.loadSync(
-    PROTO_PATH,
+const doctorPackageDefinition = loadSync(
+    DOCTOR_PROTO_PATH,
     {
         keepCase: true,
         longs: String,
@@ -15,8 +15,8 @@ const packageDefinition = protoLoader.loadSync(
         oneofs: true
     });
 
-const doctorProto = ((grpc.loadPackageDefinition(packageDefinition) as unknown) as ProtoGrpcType).doctor;
+const doctorProto = ((loadPackageDefinition(doctorPackageDefinition) as unknown) as ProtoGrpcType).doctor;
 
 export const doctorClient = new doctorProto.DoctorService(
     'localhost:50051',
-    grpc.credentials.createInsecure());
+    credentials.createInsecure());
