@@ -1,4 +1,10 @@
-import { Schema, model } from 'mongoose';
+import { Schema, Document, model, Model } from 'mongoose';
+
+export interface IPatient extends Document {
+    first_name: string;
+    last_name: string;
+    hospital: string;
+}
 
 const patientSchema = new Schema(
     {
@@ -21,5 +27,4 @@ const patientSchema = new Schema(
 
     }, { timestamps: true });
 
-const Patient = model('Patient', patientSchema);
-export = Patient;
+export const Patient: Model<IPatient> = model('Patient', patientSchema);

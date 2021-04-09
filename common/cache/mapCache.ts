@@ -1,5 +1,4 @@
 import { ICache, ValueSetItem } from './icache'
-import { logger } from "@global/logger"
 
 export = class MapCache<Value> implements ICache<Value> {
 

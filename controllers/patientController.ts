@@ -1,4 +1,4 @@
-import Patient from '@models_dir/patient';
+import { Patient } from '@models_dir/patient';
 import express from 'express'
 import { logger } from '@global/logger'
 

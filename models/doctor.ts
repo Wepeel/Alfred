@@ -1,32 +1,38 @@
-import {Schema, model} from 'mongoose';
+import { Schema, Document, model, Model } from 'mongoose';
+
+export interface IDoctor extends Document {
+    first_name: string;
+    last_name: string;
+    hospital: string;
+    department: string;
+}
 
 const doctorSchema = new Schema(
-{
-    first_name:
     {
-        type: String,
-        required: true
-    },
+        first_name:
+        {
+            type: String,
+            required: true
+        },
 
-    last_name:
-    {
-        type: String,
-        required: true
-    },
+        last_name:
+        {
+            type: String,
+            required: true
+        },
 
-    hospital:
-    {
-        type: Schema.Types.ObjectId,
-        required: true
-    },
+        hospital:
+        {
+            type: Schema.Types.ObjectId,
+            required: true
+        },
 
-    department:
-    {
-        type: String,
-        required: true
-    }
+        department:
+        {
+            type: String,
+            required: true
+        }
 
-}, { timestamps: true });
+    }, { timestamps: true });
 
-const Doctor = model('Doctor', doctorSchema);
-export = Doctor;
+export const Doctor: Model<IDoctor> = model('Doctor', doctorSchema);
