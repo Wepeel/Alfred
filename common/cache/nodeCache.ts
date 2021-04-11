@@ -1,9 +1,21 @@
 import NodeCache from 'node-cache';
 import { ICache, ValueSetItem } from './icache';
 
+/**
+ * @classdesc In memory cache
+ */
 export = class NCache<Value> implements ICache<Value>{
+
+    /**
+     * Cache object
+     * @prop
+     * @private
+     */
     _cache: NodeCache;
 
+    /**
+     * @constructor
+     */
     constructor() {
         this._cache = new NodeCache();
     }

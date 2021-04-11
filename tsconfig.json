@@ -39,6 +39,10 @@
             ]
         }
     },
+    "typedocOptions": {
+        "entryPoints": ".",
+        "exclude": ["dist", "generated", "node_modules"]
+    },
     "include": [
         "common/**/*",
         "config/**/*",
