@@ -8,6 +8,14 @@
 			"problemMatcher": [],
 			"label": "build",
 			"detail": "tsc && build-types",
+		},
+		{
+			"type": "npm",
+			"script": "build-docs",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "Build Documentation",
+			"detail": "build-docs",
 		}
 	]
 }

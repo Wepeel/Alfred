@@ -1,4 +1,4 @@
-export type ValueSetItem<T> = {
+export type KeyValuePair<T> = {
     key: string;
     val: T;
     ttl?: number;
@@ -29,12 +29,12 @@ export interface ICache<Value> {
     /**
      * Set multiple keys in the cache
      * @async
-     * @param {ValueSetItem<Value>[]} keyValuePairs - Key Value pairs to set in the cache
+     * @param {KeyValuePair<Value>[]} keyValuePairs - Key Value pairs to set in the cache
      * @param {string} keyValuePairs[].key - The key of the object
      * @param {Value} keyValuePairs[].value - The value of the object
      * @param {number} [keyValuePairs[].ttl] - The key of the object
      */
-    mset: (keyValuePairs: ValueSetItem<Value>[]) => Promise<void>;
+    mset: (keyValuePairs: KeyValuePair<Value>[]) => Promise<void>;
     /**
      * Get all values from cache
      * @async

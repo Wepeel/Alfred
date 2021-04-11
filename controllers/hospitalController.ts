@@ -4,7 +4,13 @@ import express from 'express';
 
 import { logger } from "@global/logger";
 
-export const hospitalIndexGet = async (req: express.Request, res: express.Response) => {
+/**
+ * Controller for GET of hospital index
+ * @async
+ * @param req - Request for hospital index
+ * @param res - Page of all hospitals
+ */
+export const hospitalIndexGet = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
         const result = Array.from(await hospitalCache.values());
         res.render('hospital_index', { hospitals: result, title: 'All hospitals' });
@@ -15,7 +21,13 @@ export const hospitalIndexGet = async (req: express.Request, res: express.Respon
     }
 };
 
-export const hospitalInfoGet = async (req: express.Request, res: express.Response) => {
+/**
+ * Controller for GET of hospital info
+ * @async
+ * @param req - Request for hospital info
+ * @param res - Page of hospital info
+ */
+export const hospitalInfoGet = async (req: express.Request, res: express.Response): Promise<void> => {
     const id = req.params.id;
 
     try {

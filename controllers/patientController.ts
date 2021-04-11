@@ -3,7 +3,13 @@ import express from 'express';
 import { logger } from '@global/logger';
 import { patientCache } from "@global/caches";
 
-export const patientIndexGet = async (req: express.Request, res: express.Response) => {
+/**
+ * Controller for GET of patient index
+ * @async
+ * @param req - Request for patient index
+ * @param res - Page of all patients
+ */
+export const patientIndexGet = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
         const result = Array.from(await patientCache.values());
         res.render('patient_index', { patients: result, title: 'All patients' });
@@ -14,7 +20,13 @@ export const patientIndexGet = async (req: express.Request, res: express.Respons
     }
 };
 
-export const patientInfoGet = async (req: express.Request, res: express.Response) => {
+/**
+ * Controller for GET of patient info
+ * @async
+ * @param req - Request for patient info
+ * @param res - Page of patient info
+ */
+export const patientInfoGet = async (req: express.Request, res: express.Response): Promise<void> => {
     const id = req.params.id;
     try {
         let result;
@@ -33,7 +45,13 @@ export const patientInfoGet = async (req: express.Request, res: express.Response
     }
 };
 
-export const patientIndexPost = async (req: express.Request, res: express.Response) => {
+/**
+ * Controller for POST of a patient
+ * @async
+ * @param req - Request for POST patient
+ * @param res - Response for patient POST request
+ */
+export const patientIndexPost = async (req: express.Request, res: express.Response): Promise<void> => {
     const patient = new Patient(req.body);
     try {
         await patientCache.set(patient.id, patient);
@@ -44,7 +62,13 @@ export const patientIndexPost = async (req: express.Request, res: express.Respon
     }
 };
 
-export const patientIndexDelete = async (req: express.Request, res: express.Response) => {
+/**
+ * Controller for DELETE of a patient
+ * @async
+ * @param req - Request for DELETE patient
+ * @param res - Response for patient DELETE request
+ */
+export const patientIndexDelete = async (req: express.Request, res: express.Response): Promise<void> => {
     const id = req.params.id;
     try {
         await patientCache.delete(id);
@@ -56,7 +80,13 @@ export const patientIndexDelete = async (req: express.Request, res: express.Resp
     }
 };
 
-export const patientIndexPut = async (req: express.Request, res: express.Response) => {
+/**
+ * Controller for PUT of a patient
+ * @async
+ * @param req - Request for PUT patient
+ * @param res - Response for patient PUT request
+ */
+export const patientIndexPut = async (req: express.Request, res: express.Response): Promise<void> => {
     const id = req.params.id;
     try {
         let result;
