@@ -1,4 +1,4 @@
-import { ICache, ValueSetItem } from './icache';
+import { ICache, KeyValuePair } from './icache';
 
 export = class MapCache<Value> implements ICache<Value> {
 
@@ -39,7 +39,7 @@ export = class MapCache<Value> implements ICache<Value> {
         this._cache.set(key, value);
     }
 
-    public async mset(keyValuePairs: ValueSetItem<Value>[]): Promise<void> {
+    public async mset(keyValuePairs: KeyValuePair<Value>[]): Promise<void> {
         await Promise.all(keyValuePairs.map(
             async (keyValuePair) => {
                 await this.set(keyValuePair.key, keyValuePair.val);
