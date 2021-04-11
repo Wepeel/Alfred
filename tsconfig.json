@@ -57,6 +57,6 @@
         "views/**/*",
         "generated/**/*",
         "app.ts",
-        "Gulpfile.ts"
+        "Gulpfile.js"
     ]
 }
