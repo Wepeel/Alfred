@@ -50,8 +50,7 @@ gulp.task("build:docs", (cb: any) => {
     });
 });
 
-const buildTS = gulp.series("build:tslint", "build:ts");
+const buildTS = gulp.series("build:proto-types", "build:tslint", "build:ts");
 
-const buildSides = gulp.parallel("build:docs", "build:proto-types");
 
-export const build = gulp.series(buildSides, buildTS);
+export const build = gulp.parallel("build:docs", buildTS);
