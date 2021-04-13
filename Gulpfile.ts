@@ -1,12 +1,22 @@
 import gulp from "gulp";
 import ts from "gulp-typescript";
 import sourcemaps from "gulp-sourcemaps";
+import tslint from "gulp-tslint";
 import { exec } from "child_process";
 
 // tslint:disable: no-console
 
 gulp.task("default", (cb: any) => {
     cb();
+});
+
+gulp.task('build:tslint', () => {
+    return gulp.src("**/*.ts")
+        .pipe(tslint({
+            configuration: "tslint.json",
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report());
 });
 
 gulp.task('build:ts', () => {
@@ -39,4 +49,6 @@ gulp.task("build:docs", (cb: any) => {
     });
 });
 
-export const build = gulp.series("build:proto-types", gulp.parallel("build:docs", "build:ts"));
+export const build = gulp.series("build:proto-types",
+    gulp.parallel("build:docs",
+        gulp.series("build:tslint", "build:ts")));
