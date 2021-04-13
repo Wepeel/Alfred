@@ -14,7 +14,8 @@ gulp.task('build:tslint', () => {
     return gulp.src("**/*.ts")
         .pipe(tslint({
             configuration: "tslint.json",
-            formatter: "verbose"
+            formatter: "verbose",
+            fix: true
         }))
         .pipe(tslint.report());
 });
@@ -49,6 +50,7 @@ gulp.task("build:docs", (cb: any) => {
     });
 });
 
-export const build = gulp.series("build:proto-types",
-    gulp.parallel("build:docs",
-        gulp.series("build:tslint", "build:ts")));
+const buildTS = gulp.series("build:proto-types", "build:tslint", "build:ts");
+
+
+export const build = gulp.parallel("build:docs", buildTS);
