@@ -38,3 +38,5 @@ gulp.task("build:docs", (cb: any) => {
         cb();
     });
 });
+
+export const build = gulp.series("build:proto-types", gulp.parallel("build:docs", "build:ts"));
