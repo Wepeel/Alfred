@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option go_package = "casey/generated/doctor";
+
 package doctor;
 
 service DoctorService
@@ -9,15 +11,15 @@ service DoctorService
 
 message CaseInfoRequest
 {
-    required uint32 heart_beat_per_minute = 1;
-    required uint32 breath_per_minute = 2;
-    required uint32 avpu = 3;
+    uint32 heart_beat_per_minute = 1;
+    uint32 breath_per_minute = 2;
+    uint32 avpu = 3;
     repeated uint32 symptoms = 4;
 }
 
 message DiseaseRepsonse
 {
-    required uint32 dept = 1;
-    required uint32 urgency = 2;
+    uint32 dept = 1;
+    uint32 urgency = 2;
     repeated string disease = 3;
 }

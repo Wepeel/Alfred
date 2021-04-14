@@ -1,0 +1,62 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "alwaysStrict": true,
+        "noImplicitThis": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noUncheckedIndexedAccess": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "paths": {
+            "@controllers_dir/*": [
+                "controllers/*"
+            ],
+            "@routes_dir/*": [
+                "routes/*"
+            ],
+            "@config/*": [
+                "config/*"
+            ],
+            "@models_dir/*": [
+                "models/*"
+            ],
+            "@common/*": [
+                "common/*"
+            ],
+            "@global/*": [
+                "global/*"
+            ],
+            "@generated/*": [
+                "generated/*"
+            ]
+        }
+    },
+    "typedocOptions": {
+        "entryPoints": ".",
+        "exclude": [
+            "dist",
+            "generated",
+            "node_modules"
+        ]
+    },
+    "include": [
+        "common/**/*",
+        "config/**/*",
+        "controllers/**/*",
+        "global/**/*",
+        "models/**/*",
+        "routes/**/*",
+        "views/**/*",
+        "generated/**/*",
+        "app.ts",
+        "Gulpfile.ts"
+    ]
+}
