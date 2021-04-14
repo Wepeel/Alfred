@@ -35,7 +35,7 @@ gulp.task('build:ts', () => {
 });
 
 gulp.task("build:proto-types", (cb: any) => {
-    exec('scripts/build_proto_types.cmd', (err, stdout, stderr) => {
+    exec('scripts\\build_proto_types.cmd', (err, stdout, stderr) => {
         console.log(stdout);
         console.log(stderr);
         cb();
@@ -43,7 +43,15 @@ gulp.task("build:proto-types", (cb: any) => {
 });
 
 gulp.task("build:docs", (cb: any) => {
-    exec('cd scripts && ./build_docs.cmd', (err, stdout, stderr) => {
+    exec('cd scripts && .\\build_docs.cmd', (err, stdout, stderr) => {
+        console.log(stdout);
+        console.log(stderr);
+        cb();
+    });
+});
+
+gulp.task("docker:build-image", (cb: any) => {
+    exec('docker build -t alfred:latest', (err, stdout, stderr) => {
         console.log(stdout);
         console.log(stderr);
         cb();
