@@ -50,6 +50,14 @@ gulp.task("build:docs", (cb: any) => {
     });
 });
 
+gulp.task("docker:build-image", (cb: any) => {
+    exec('docker build -t alfred:latest', (err, stdout, stderr) => {
+        console.log(stdout);
+        console.log(stderr);
+        cb();
+    });
+});
+
 const buildTS = gulp.series("build:proto-types", "build:tslint", "build:ts");
 
 
