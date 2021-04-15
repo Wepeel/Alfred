@@ -1,8 +1,18 @@
 version: '3'
 services:
-    alfred:
-        build: .
+    ui-backend:
+        build: 'UI Backend/'
         ports:
             - 3000:3000
-        volumes: 
-            - .:/usr/src/app
+        volumes:
+            - UI Backend:/usr/src/app
+        links:
+            - redis
+    casey:
+        build: Casey/
+        ports:
+            - 3001:3001
+        links:
+            - redis
+    redis:
+        build: Redis/
