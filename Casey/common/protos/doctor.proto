@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "casey/generated/doctor";
+
+package doctor;
+
+service DoctorService
+{
+    rpc FindDisease (CaseInfoRequest) returns (DiseaseRepsonse);
+}
+
+message CaseInfoRequest
+{
+    uint32 heart_beat_per_minute = 1;
+    uint32 breath_per_minute = 2;
+    uint32 avpu = 3;
+    repeated uint32 symptoms = 4;
+}
+
+message DiseaseRepsonse
+{
+    uint32 dept = 1;
+    uint32 urgency = 2;
+    repeated string disease = 3;
+}
