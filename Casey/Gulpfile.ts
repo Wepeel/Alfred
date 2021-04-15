@@ -1,10 +1,24 @@
 import gulp from "gulp";
 import ts from "gulp-typescript";
 import sourcemaps from "gulp-sourcemaps";
+const eslint = require('gulp-eslint');
 import { exec } from "child_process";
 
 gulp.task("default", (cb: any) => {
     cb();
+});
+
+gulp.task("build:tslint", () => {
+    return gulp.src(['**s'])
+        // eslint() attaches the lint output to the "eslint" property
+        // of the file object so it can be used by other modules.
+        .pipe(eslint())
+        // eslint.format() outputs the lint results to the console.
+        // Alternatively use eslint.formatEach() (see Docs).
+        .pipe(eslint.format())
+        // To have the process exit with an error code (1) on
+        // lint error, return the stream and pipe to failAfterError last.
+        .pipe(eslint.failAfterError());
 });
 
 gulp.task('build:ts', () => {
@@ -45,7 +59,7 @@ gulp.task("docker:build-image", (cb: any) => {
     });
 });
 
-const buildTS = gulp.series("build:proto-types", "build:ts");
+const buildTS = gulp.series("build:proto-types", "build:tslint", "build:ts");
 
 
 export const build = gulp.parallel("build:docs", buildTS);

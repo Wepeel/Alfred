@@ -12,5 +12,7 @@ services:
         build: Casey/
         ports:
             - 3001:3001
+        links:
+            - redis
     redis:
         build: Redis/
