@@ -1,6 +1,6 @@
 version: '3'
 services:
-    ui-backend:
+    uib:
         build: 'UI Backend/'
         ports:
             - 3000:3000

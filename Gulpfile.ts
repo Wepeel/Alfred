@@ -31,7 +31,7 @@ gulp.task("build", (cb: any) => {
     cb();
 });
 
-gulp.task("docker:build-images", (cb: any) => {
+gulp.task("build-images", (cb: any) => {
     // get library path
     const lib = resolve(__dirname);
 

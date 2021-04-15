@@ -46,7 +46,7 @@ gulp.task("build:docs", (cb: any) => {
 });
 
 gulp.task("docker:build-image", (cb: any) => {
-    exec('docker build -t alfred:latest -f Dockerfile .', (err, stdout, stderr) => {
+    exec('docker build -t uib:latest -f Dockerfile .', (err, stdout, stderr) => {
         console.log(stdout);
         console.log(stderr);
         cb();
