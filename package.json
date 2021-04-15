@@ -4,6 +4,7 @@
   "description": "Server to handle logic of EMStimal",
   "scripts": {
     "postinstall": "npm run build",
+    "build-images": "gulp build-images",
     "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

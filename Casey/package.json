@@ -6,6 +6,7 @@
   "scripts": {
     "postinstall": "npm run build",
     "build": "gulp build",
+    "build-image": "gulp docker:build-image",
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
