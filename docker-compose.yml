@@ -1,17 +1,19 @@
 version: '3'
 services:
-    ui-backend:
-        build: 'UI Backend/'
+    uib:
+        build: 'UIBackend/'
         ports:
             - 3000:3000
         volumes:
-            - UI Backend:/usr/src/app
+            - ./UIBackend:/usr/src/app
         links:
             - redis
     casey:
         build: Casey/
         ports:
             - 3001:3001
+        volumes:
+            - ./Casey:/usr/src/app
         links:
             - redis
     redis:
