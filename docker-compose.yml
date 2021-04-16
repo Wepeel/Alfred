@@ -1,6 +1,7 @@
 version: '3'
 services:
     uib:
+        container_name: uib
         build: 'UIBackend/'
         ports:
             - 3000:3000
@@ -9,6 +10,7 @@ services:
         links:
             - redis
     casey:
+        container_name: casey
         build: Casey/
         ports:
             - 3001:3001
@@ -17,4 +19,7 @@ services:
         links:
             - redis
     redis:
+        container_name: redis
         build: Redis/
+        ports:
+            - 6379:6379

@@ -39,5 +39,14 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "typedoc": "^0.20.35",
     "typescript": "^4.2.4"
+  },
+  "_moduleAliases": {
+    "@controllers_dir": "./dist/controllers",
+    "@routes_dir": "./dist/routes",
+    "@config": "./dist/config",
+    "@models_dir": "./dist/models",
+    "@common": "./dist/common",
+    "@global": "./dist/global",
+    "@generated": "./dist/generated"
   }
 }
