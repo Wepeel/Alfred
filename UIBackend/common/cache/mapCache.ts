@@ -1,6 +1,5 @@
-import { ICache, KeyValuePair } from './icache';
-
-export = class MapCache<Value> implements ICache<Value> {
+import { Promise as BBPromise } from 'bluebird';
+export = class MapCache<Value> {
 
     _cache: Map<string, Value>;
     readonly _size: number;
@@ -39,12 +38,12 @@ export = class MapCache<Value> implements ICache<Value> {
         this._cache.set(key, value);
     }
 
-    public async mset(keyValuePairs: KeyValuePair<Value>[]): Promise<void> {
-        await Promise.all(keyValuePairs.map(
-            async (keyValuePair) => {
+    public async mset(arg: { key: string, val: Value }[]): Promise<void> {
+        await BBPromise.map(arg,
+            async (keyValuePair: { key: string, val: Value }) => {
                 await this.set(keyValuePair.key, keyValuePair.val);
             }
-        ));
+        );
     }
 
     public async values(): Promise<IterableIterator<Value>> {

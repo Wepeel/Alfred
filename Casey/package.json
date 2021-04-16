@@ -18,7 +18,9 @@
     "@grpc/proto-loader": "^0.6.0",
     "bluebird": "^3.7.2",
     "module-alias": "^2.2.2",
+    "mongoose": "^5.12.4",
     "redis": "^3.1.1",
+    "typegoose": "^5.9.1",
     "winston": "^3.3.3"
   },
   "devDependencies": {

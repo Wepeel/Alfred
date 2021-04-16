@@ -1,10 +1,9 @@
 import NodeCache from 'node-cache';
-import { ICache, KeyValuePair } from './icache';
 
 /**
  * @classdesc In memory cache
  */
-export = class NCache<Value> implements ICache<Value>{
+export = class NCache<Value>{
 
     /**
      * Cache object
@@ -32,8 +31,8 @@ export = class NCache<Value> implements ICache<Value>{
         this._cache.set(key, value);
     }
 
-    async mset(keyValuePairs: KeyValuePair<Value>[]): Promise<void> {
-        this._cache.mset(keyValuePairs);
+    async mset(arg: { key: string, val: Value }[]): Promise<void> {
+        this._cache.mset(arg);
     }
 
     async values(): Promise<IterableIterator<Value>> {

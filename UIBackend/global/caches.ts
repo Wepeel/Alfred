@@ -1,10 +1,11 @@
-import Cache from "@common/cache";
+import { RedisCache } from "@common/cache";
 import { IHospital, Hospital } from "@models_dir/hospital";
 import { IPatient, Patient } from "@models_dir/patient";
+import { Promise as BBPromise } from 'bluebird';
 
 
-export let hospitalCache = new Cache<IHospital>();
-export let patientCache = new Cache<IPatient>();
+export let hospitalCache = new RedisCache<IHospital>();
+export let patientCache = new RedisCache<IPatient>();
 
 /**
  * Initialize global hospital cache
@@ -12,11 +13,10 @@ export let patientCache = new Cache<IPatient>();
  */
 async function initializeHospitalCache() {
     const result = await Hospital.find().sort({ createdAt: -1 });
-    await hospitalCache.mset(
-        result.map((hospital: IHospital) => {
-            return { key: hospital.id, val: hospital };
-        })
-    );
+
+    await BBPromise.map(result, async (hosp: IHospital) => {
+        await hospitalCache.set(hosp.id, hosp);
+    });
 }
 
 /**
@@ -25,11 +25,10 @@ async function initializeHospitalCache() {
  */
 async function initializePatientCache() {
     const result = await Patient.find().sort({ createdAt: -1 });
-    await patientCache.mset(
-        result.map((patient: IPatient) => {
-            return { key: patient.id, val: patient };
-        })
-    );
+
+    await BBPromise.map(result, async (patient: IPatient) => {
+        await patientCache.set(patient.id, patient);
+    });
 }
 
 /**
