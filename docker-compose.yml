@@ -12,6 +12,8 @@ services:
         build: Casey/
         ports:
             - 3001:3001
+        volumes:
+            - ./Casey:/usr/src/app
         links:
             - redis
     redis:
