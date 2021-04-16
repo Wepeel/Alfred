@@ -1,7 +1,5 @@
+import { RedisCache } from "@common/cache";
+import { IHospital } from "@models_dir/hospital";
 
-/**
- * Initialize global caches
- * @async
- */
-export async function initializeCaches() {
-}
+
+export const hospitalCache = new RedisCache<IHospital>();

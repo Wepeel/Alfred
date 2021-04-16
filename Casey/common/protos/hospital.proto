@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "casey/generated/doctor";
+
+package hospital;
+
+service HospitalService
+{
+    rpc FindHospital (CaseInfoRequest) returns (HospitalResponse);
+}
+
+message CaseInfoRequest
+{
+    uint32 heart_beat_per_minute = 1;
+    uint32 breath_per_minute = 2;
+    uint32 avpu = 3;
+    repeated uint32 symptoms = 4;
+}
+
+message HospitalResponse
+{
+    string name = 1;
+    float longitude = 2;
+    float latitude = 3;
+}
