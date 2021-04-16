@@ -1,8 +1,11 @@
-import { loadPackageDefinition, credentials, Server, ServerUnaryCall, sendUnaryData, ServerCredentials } from '@grpc/grpc-js';
-import { loadSync } from '@grpc/proto-loader';
+import { loadPackageDefinition, credentials, Server, ServerUnaryCall, sendUnaryData, ServerCredentials, ServiceError } from '@grpc/grpc-js';
+import { loadSync, MessageTypeDefinition } from '@grpc/proto-loader';
 
 import { ProtoGrpcType as DoctorGrpcType } from "@generated/doctor";
 import { ProtoGrpcType as HospitalGrpcType } from "@generated/hospital";
+import { CaseInfoRequest } from '@generated/doctor/CaseInfoRequest';
+import { DiseaseResponse } from '@generated/doctor/DiseaseResponse';
+import { logger } from './logger';
 
 const DOCTOR_PROTO_PATH = `${__dirname}/../../common/protos/doctor.proto`;
 const HOSPITAL_PROTO_PATH = `${__dirname}/../../common/protos/doctor.proto`;
@@ -44,5 +47,12 @@ server.bindAsync('0.0.0.0:50051', ServerCredentials.createInsecure(), () => {
 
 function findHospital(call: ServerUnaryCall<typeof hospitalProto.CaseInfoRequest, typeof hospitalProto.HospitalResponse>,
     callback: sendUnaryData<typeof hospitalProto.HospitalResponse>) {
-
+    let result: DiseaseResponse;
+    doctorClient.FindDisease(call.request as CaseInfoRequest, (err?: ServiceError, res?: DiseaseResponse) => {
+        if (err != undefined) {
+            logger.error("Error with grpc");
+        }
+        result = res;
+    });
+    callback(null, result as MessageTypeDefinition);
 }

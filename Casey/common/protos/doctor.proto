@@ -6,7 +6,7 @@ package doctor;
 
 service DoctorService
 {
-    rpc FindDisease (CaseInfoRequest) returns (DiseaseRepsonse);
+    rpc FindDisease (CaseInfoRequest) returns (DiseaseResponse);
 }
 
 message CaseInfoRequest
@@ -17,7 +17,7 @@ message CaseInfoRequest
     repeated uint32 symptoms = 4;
 }
 
-message DiseaseRepsonse
+message DiseaseResponse
 {
     uint32 dept = 1;
     uint32 urgency = 2;
