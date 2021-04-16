@@ -2,11 +2,11 @@ syntax = "proto3";
 
 option go_package = "casey/generated/doctor";
 
-package doctor;
+package hospital;
 
-service DoctorService
+service HospitalService
 {
-    rpc FindDisease (CaseInfoRequest) returns (DiseaseRepsonse);
+    rpc FindHospital (CaseInfoRequest) returns (HospitalResponse);
 }
 
 message CaseInfoRequest
@@ -17,9 +17,9 @@ message CaseInfoRequest
     repeated uint32 symptoms = 4;
 }
 
-message DiseaseRepsonse
+message HospitalResponse
 {
-    uint32 dept = 1;
-    uint32 urgency = 2;
-    repeated string disease = 3;
+    string name = 1;
+    float longitude = 2;
+    float latitude = 3;
 }
