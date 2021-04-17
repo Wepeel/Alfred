@@ -7,7 +7,9 @@ services:
             - 3000:3000
         volumes:
             - ./UIBackend:/usr/src/app
-        links:
+        networks:
+            - cache-net
+        depends_on:
             - redis
     casey:
         container_name: casey
@@ -16,10 +18,15 @@ services:
             - 3001:3001
         volumes:
             - ./Casey:/usr/src/app
-        links:
-            - redis
+        networks:
+            - cache-net
     redis:
         container_name: redis
         build: Redis/
         ports:
             - 6379:6379
+        networks:
+            - cache-net
+networks:
+    cache-net:
+        driver: bridge

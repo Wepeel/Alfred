@@ -22,7 +22,7 @@ export class RedisCache<Value> {
     readonly redisDelete: (keys: string) => Promise<boolean>;
 
     constructor() {
-        this._client = redis.createClient();
+        this._client = redis.createClient({ host: 'redis', port: 6379 });
 
         this.redisGet = promisify(this._client.get).bind(this._client);
         this.redisExists = promisify(this._client.exists).bind(this._client);
