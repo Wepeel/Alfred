@@ -38,12 +38,10 @@ const hospitalPackageDefinition = loadSync(
 
 const hospitalProto = ((loadPackageDefinition(hospitalPackageDefinition) as unknown) as HospitalGrpcType).hospital;
 
-const server = new Server();
+export const server = new Server();
 server.addService(hospitalProto.HospitalService.service, { findHospital });
+export { ServerCredentials };
 
-server.bindAsync('0.0.0.0:50051', ServerCredentials.createInsecure(), () => {
-    server.start();
-});
 
 function findHospital(call: ServerUnaryCall<typeof hospitalProto.CaseInfoRequest, typeof hospitalProto.HospitalResponse>,
     callback: sendUnaryData<typeof hospitalProto.HospitalResponse>) {

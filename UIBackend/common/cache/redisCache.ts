@@ -1,5 +1,6 @@
 import { promisify } from "util"
 import redis from 'redis';
+import { Promise as BBPromise } from 'bluebird'
 
 declare module "util" {
     function promisify<T, U, R>(fn: redis.OverloadedCommand<T, U, R>): {
@@ -22,7 +23,7 @@ export class RedisCache<Value> {
     readonly redisDelete: (keys: string) => Promise<boolean>;
 
     constructor() {
-        this._client = redis.createClient();
+        this._client = redis.createClient({ host: 'redis', port: 6379 });
 
         this.redisGet = promisify(this._client.get).bind(this._client);
         this.redisExists = promisify(this._client.exists).bind(this._client);
@@ -54,7 +55,12 @@ export class RedisCache<Value> {
      * @returns {Promise} Promise of the value representing `key`
      */
     async get(key: string): Promise<Value> {
-        return JSON.parse(await this.redisGet(key));
+        const result = await this.redisGet(key);
+        if (null == result) {
+            console.error("Error getting value from cache");
+        }
+
+        return JSON.parse(result);
     }
 
     /**
@@ -64,7 +70,7 @@ export class RedisCache<Value> {
      * @param value - Value to set
      */
     async set(key: string, value: Value): Promise<void> {
-        if (await this.redisSet(key, JSON.stringify(value))) {
+        if (! await this.redisSet(key, JSON.stringify(value))) {
             console.error("Error setting to cache");
         }
     }
@@ -76,7 +82,7 @@ export class RedisCache<Value> {
      */
     async mset(arg: redis.OverloadedCommand<string, boolean, Value>): Promise<void> {
         if (! await this.redisMset(arg)) {
-            console.error("Error setting to cache");
+            console.error("Error setting multiple values to cache");
         }
     }
 
@@ -88,7 +94,11 @@ export class RedisCache<Value> {
     async values(): Promise<IterableIterator<Value>> {
         const keys = await this.keys();
 
-        return await this.redisMget(Array.from(keys));
+        const jsonValues = await this.redisMget(Array.from(keys));
+
+        const values = await BBPromise.map(jsonValues, async (value: string) => JSON.parse(value) as Value)
+
+        return values.values();
     }
 
     /**
