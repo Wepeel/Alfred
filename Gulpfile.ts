@@ -83,4 +83,30 @@ gulp.task("build-images", (cb: any) => {
     cb();
 });
 
+gulp.task("build-docs", (cb: any) => {
+    // get library path
+    const lib = resolve(__dirname);
+
+    fs.readdirSync(lib).forEach((mod) => {
+        const modPath = join(lib, mod);
+
+        // ensure path has package.json
+        if (!fs.existsSync(join(modPath, 'package.json'))) {
+            return;
+        }
+
+        // npm binary based on OS
+        const npmCmd = os.platform().startsWith('win') ? 'npm.cmd' : 'npm';
+
+        // install folder
+        cp.spawn(npmCmd, ['run', 'build-docs'], {
+            env: process.env,
+            cwd: modPath,
+            stdio: 'inherit'
+        });
+    });
+
+    cb();
+});
+
 export const build = "build";
