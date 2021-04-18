@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "gulp install",
     "build-images": "gulp build-images",
+    "build-docs": "gulp build-docs",
     "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
