@@ -1,5 +1,4 @@
 import winston from 'winston';
-import expressWinston from 'express-winston';
 
 export const logger = winston.createLogger({
     level: 'info',
@@ -22,18 +21,4 @@ winston.addColors({
     warn: 'yellow',
     info: 'green',
     debug: 'white'
-});
-
-export const expressWinstonLogger = expressWinston.logger({
-    transports: [
-        new winston.transports.Console()
-    ],
-    format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple()
-    ),
-    meta: false,
-    expressFormat: true,
-    colorize: true,
-    ignoreRoute(req, res) { return false; }
 });
